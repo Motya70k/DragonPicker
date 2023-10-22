@@ -5,23 +5,20 @@ using UnityEngine;
 public class DragonEgg : MonoBehaviour
 {
     public static float bottomY = -30f;
-    
-    void Start()
-    {
-
-    }
+    public AudioSource audioSource;
     
     private void OnTriggerEnter(Collider other)
     {
         ParticleSystem ps = GetComponent<ParticleSystem>();
         var em = ps.emission;
         em.enabled = true;
-
         Renderer rend;
         rend = GetComponent<Renderer>();
         rend.enabled = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.Play();
     }
-   
+
     void Update()
     {
         if (transform.position.y < bottomY)
